@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root_view"
+    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
+    tools:context="wartaonline.chat.chatapp.ChatActivity"
+    >
+
+    <android.support.v7.widget.RecyclerView
+
+        android:layout_above="@+id/etPesan"
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+
+
+    <ImageView
+        android:id="@+id/emojibtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/emoo"
+        android:layout_alignParentBottom="true"
+        />
+
+    <hani.momanii.supernova_emoji_library.Helper.EmojiconEditText
+        android:id="@+id/etPesan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_toRightOf="@+id/emojibtn"
+        android:layout_toEndOf="@+id/emojibtn"
+        emojicon:emojiconSize="28sp"
+        android:hint=" "
+        android:layout_toLeftOf="@+id/btnsend"
+        android:layout_toStartOf="@+id/btnsend" />
+
+    <Button
+        android:id="@+id/btnsend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="Send"/>
+
+</RelativeLayout>

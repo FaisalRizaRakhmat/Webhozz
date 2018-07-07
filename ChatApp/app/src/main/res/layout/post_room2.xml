@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgview"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvroomname"
+        android:layout_alignEnd="@+id/tvroomname"
+        android:layout_alignRight="@+id/tvroomname"
+        app:srcCompat="@color/amber_100"
+        tools:layout_editor_absoluteX="-9dp"
+        tools:layout_editor_absoluteY="-20dp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tvroomname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="tvroomname"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        tools:layout_editor_absoluteX="-17dp"
+        tools:layout_editor_absoluteY="41dp" />
+
+    <TextView
+        android:id="@+id/tvcreatedby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:maxLines="2"
+        android:ellipsize="end"
+        />
+
+    <LinearLayout
+        android:layout_width="348dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="293dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/comment_icon" />
+
+        <TextView
+            android:id="@+id/cmnThread"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+
+
+
+
+    <TextView
+        android:id="@+id/txtkey"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        />
+
+</LinearLayout>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "104689388064",
+    "firebase_url": "https://wartaonline-a5c48.firebaseio.com",
+    "project_id": "wartaonline-a5c48",
+    "storage_bucket": "wartaonline-a5c48.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104689388064:android:7b7bac14c7f01ea5",
+        "android_client_info": {
+          "package_name": "wartaonline.chat.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "104689388064-onha9fh0eljlgfsvl11353q69guo9au2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALbBWLxvyV6Va6qsmwoCkERmBA3lnpzLQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
