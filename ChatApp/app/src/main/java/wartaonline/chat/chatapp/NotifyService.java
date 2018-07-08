@@ -19,7 +19,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import wartaonline.chat.chatapp.models.ChatGroup;
@@ -109,10 +112,14 @@ public class NotifyService extends Service {
         Toast.makeText(this, "Service Destroyed", Toast.LENGTH_LONG).show();
     }
 
-    List<String> itemsxxx = new ArrayList<>();
+    //List<String> itemsxxx = new ArrayList<>();
+    //List<HashMap<String,Object>> itemsxxx = new ArrayList<HashMap<String, Object>>();
+    HashMap<String,Object> itemsxxx = new HashMap<String, Object>();
 
     public void checkmeberstatus(final String namegroup){
         //String varxxx = checkmeberstatus(namegroup);
+        //checkmeberstatus(namegroup);
+        itemsxxx.clear();
         userdata = PrefUtils.getCurrentUser(this);
         databaseReference = firebaseDatabase.getReference("group").child(namegroup);
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -121,7 +128,8 @@ public class NotifyService extends Service {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //List<StatusMember> items = new ArrayList<>();
                 //itemsxxx.clear();
-                itemsxxx.add(dataSnapshot.child("members").getValue().toString());
+                itemsxxx.put(namegroup,dataSnapshot.child("members").getValue());
+                //itemsxxx[namegroup].add(dataSnapshot.child("members").getValue().toString());
 //                if(dataSnapshot.child("members").getValue().toString().contains("true")){
 //                    Log.d(TAG, "ChatGroupActivity1xxxx true: "+ dataSnapshot.child("members").getValue().toString());
 //                    //Log.i("ChatGroupActivity1xxxx true", dataSnapshot.child("members").getValue().toString());
@@ -131,7 +139,7 @@ public class NotifyService extends Service {
 //                }
 //                Log.d(TAG, "ChatGroupActivity1wkwkwkk: "+ items.toString());
 
-
+                //return itemsxxx;
             }
 
             @Override
@@ -140,12 +148,13 @@ public class NotifyService extends Service {
             }
         };
         databaseReference.addValueEventListener(valueEventListener);
+        //return itemsxxx;
     }
 
     private void checkgroup(final String namegroup){
         //checkmeberstatus(namegroup);
-//        String vvv = String.valueOf(checkmeberstatus(namegroup));
-//        Log.d(TAG, "onDataChange utktktk: "+vvv);
+        //String vvv = String.valueOf(checkmeberstatus(namegroup));
+        //Log.d(TAG, "onDataChange utktktk: "+checkmeberstatus(namegroup));
         userdata = PrefUtils.getCurrentUser(this);
         databaseReference = firebaseDatabase.getReference("group").child(namegroup);
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -155,29 +164,43 @@ public class NotifyService extends Service {
                 items.clear();
                 //Log.i("ChatGroupActivity1", dataSnapshot.child("members").getValue().toString());
                 //Log.i("ChatGroupActivity1", String.valueOf(this.checkmeberstatus(namegroup)));
+
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Message message = snapshot.getValue(Message.class);
+
                     //Log.i("ChatGroupActivity1", dataSnapshot.child("members").child(userdata.uid).getValue().toString());
                     //Log.d("sswkwkwkw", String.valueOf(message.tipe));
                     Log.d("rrrrxxxx",message.uid);
                     Log.d("rrrrxxx",String.valueOf(itemsxxx.toString()));
-                    Log.d("rrrr",String.valueOf(itemsxxx.equals(userdata.uid)));
+                    //Log.d("rrrr",String.valueOf(itemsxxx.contains(userdata.uid+"=true")));
                     Log.d("rrrr user id",userdata.uid);
-                    if (message.uid.equals(userdata.uid)){
-                        Log.i("ChatGroupActivity", message.uid);
-                        message.tipe = 1;
-                        //addNotification(message.name,message.message);
-                    }else{
-                        Log.i("ChatGroupActivity xxxx", message.uid);
-                        message.tipe = 0;
-                        //addNotification(message.name,message.message);
-                        if(String.valueOf(itemsxxx.equals(userdata.uid)).equalsIgnoreCase("false")) {
-                            addNotification(message.name, message.message, namegroup);
+                    //itemsxxx.get(namegroup).equals(userdata.uid);
+                    //List uid = itemsxxx.get(namegroup);
+                    try{
+                        JSONObject uid = new JSONObject(itemsxxx.get(namegroup).toString());
+                        Log.d("rrrr user id wkwkw",String.valueOf(uid.get(userdata.uid))); //itemsxxx[namegroup][userdata.uid]
+                        if (message.uid.equals(userdata.uid)){
+                            Log.i("ChatGroupActivity", message.uid);
+                            message.tipe = 1;
+                            //addNotification(message.name,message.message);
+                        }else{
+                            Log.i("ChatGroupActivity xxxx", message.uid);
+                            message.tipe = 0;
+                            //addNotification(message.name,message.message);
+                            //itemsxxx.stream().filter( x -> !itemsxxx.contains(userdata.uid) ).forEach(x -> System.out.println(x));
+                            if(uid.get(userdata.uid).equals(true)){
+                                addNotification(message.name, message.message, namegroup);
+                            }
                         }
+                        Log.i("Chat", "xxxx " + message.message);
+                        items.add(0,message);
+                    }catch (Exception e){
+
                     }
-                    Log.i("Chat", "xxxx " + message.message);
-                    items.add(0,message);
+                    //JSONObject uid = new JSONObject(itemsxxx.get(namegroup).toString());
+
                     //itemsxxx.clear();
+
                 }
 
             }
